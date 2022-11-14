@@ -1,9 +1,9 @@
-from Solucao import Solucao
-
+from Model.Solucao import Solucao
+from Controllers.SolucaoController import SolucaoController
 class Main:
     def __init__(self):
-        solucao= Solucao("vermelho", "ingles", "agua", "lucky strike", "cao")
-        # print(solucao)
+        SolucaoController.gerarSolucaoAleatoria();
+
 
 if __name__ == "__main__":
     Main()
