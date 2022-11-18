@@ -5,6 +5,7 @@ from Model.Individuo import Individuo
 class Regras(Enum):
     "O Norueguês vive na primeira casa."
     "O Inglês mora na casa vermelha."
+    "O Sueco tem Cachorros como animais de estimação."
     "O Dinamarquês bebe chá."
     "A casa verde está imediatamente à esquerda da casa branca."
     "O dono da casa verde bebe café."
@@ -66,13 +67,3 @@ class Animais(Enum):
     Cavalo = 4
     Peixe = 5
 
-def fitness():
-    
-    ## deixar aqui por enquanto
-    ## 1 noruegues na casa 1
-
-    if (Nacionalidades(Solucao.getNacionalidade()[0]).name == 4):
-        Individuo.addPonto()
-
-    ## inglês na casa vermelha
-    if 
