@@ -48,13 +48,14 @@ class SolucaoController:
         print("O individuo com a maior pontuação da geração foi: ", geracao[0].__str__())
         novaGeracao = []
 
-        for i in range(len(geracao)//5): # recombinando os 20 melhores pontuados
-            SolucaoController.recombinacao(geracao[i], geracao[i])
-            novaGeracao.append(SolucaoController.recombinacao(geracao[i], geracao[i+1]))
-
-        for i in range (int(len(geracao)* 0.8)): #populando com os 80 restantes
-            novaGeracao.append(SolucaoController.gerarSolucaoAleatoria(i))
+        for i in range(len(geracao)//5): # sobrevivencia dos 20% melhores pontuados
+            novaGeracao.append(geracao[i])
+        for i in range (int(len(novaGeracao)* 0.8)): #recombinando os melhores para popular os 80 restantes
+            if novaGeracao[i+1] != None:
+                novaGeracao.append(SolucaoController.recombinacao(novaGeracao[i], novaGeracao[i+1]))
         
+        novaGeracao = SolucaoController.mutacao(geracao)
+
         return novaGeracao
 
     
@@ -73,13 +74,35 @@ class SolucaoController:
         filho = Individuo(solucoesFilho, pai.id + mae.id)
         return filho
 
+    def mutacao(geracao: list):
+        k = random.randint(1, 30)
+        flagMutacao = False
+        if k == 2:
+            for i in range(len(geracao)):
+                if(flagMutacao):
+                    break
+                for j in range(len(geracao[i].solucoes)):
+                    if(flagMutacao):
+                        break
+                    for l in range(len(geracao[i].solucoes[j])):
+                        if(flagMutacao):
+                            break
+                        if l == k:
+                            geracao[i].solucoes[j][l] = random.randint(1, 5)
+                            print('OCORREU UMA MUTAÇÃO ')
+                            flagMutacao = True
+                            break
+
+        return geracao
+
     def run(qtdIndividuos:int):
         geracao = SolucaoController.criarGeracao(2000)
         geracao.sort(key=lambda x: x.pontuacao, reverse=True)
         cont = 0
-        while geracao[0].pontuacao < 25:
+        while geracao[0].pontuacao < 20:
+        # while cont < 25:
             cont += 1 
-            geracao = SolucaoController.criarGeracao(2000)
+            geracao = SolucaoController.criarGeracao(qtdIndividuos)
             geracao.sort(key=lambda x: x.pontuacao, reverse=True)
             print("O individuo com a maior pontuação da geração foi: ", geracao[0].__str__())
             print("Geração: ", cont)
