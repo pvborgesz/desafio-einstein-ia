@@ -11,33 +11,31 @@ class SolucaoController:
     
     def gerarSolucaoAleatoria():        
         solucoes = []
-        # solucao = Solucao(random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5))
         todasCores = []
         for i in range (5):
-            # solucao = Solucao(random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5))
-            cor = SolucaoController.gerarCor(todasCores)
-            
-            solucao = [random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5), random.randint(1, 5)]
+            # solucoes.append(SolucaoController.gerarValorNaoRepetido(todasCores), SolucaoController.gerarValorNaoRepetido(todasCores), SolucaoController.gerarValorNaoRepetido(todasCores), SolucaoController.gerarValorNaoRepetido(todasCores), SolucaoController.gerarValorNaoRepetido(todasCores))
+            solucao = [SolucaoController.gerarValorNaoRepetido(todasCores), SolucaoController.gerarValorNaoRepetido(todasCores), SolucaoController.gerarValorNaoRepetido(todasCores), SolucaoController.gerarValorNaoRepetido(todasCores), SolucaoController.gerarValorNaoRepetido(todasCores)]
             print( "Solucao gerada: ", (solucao.__str__()))
-            solucoes.append(solucao) 
-
+            solucoes.append(solucao)
+            if len (solucao) == 5:
+                todasCores = []
+        # print(solucoes, 'asd')
         individuo = Individuo(solucoes)
+        # print(individuo.__str__(), 'dasdas')
 
-        individuo = IndividuoController.gerarPontuacao(individuo)
-
+        individuo.pontuacao = IndividuoController.gerarPontuacao(individuo)
+        # individuo.pontuacao = IndividuoController.fitness(individuo)
+        print(individuo.__str__())
         return individuo
 
     def decoficarSolucao(individuo : list):
         solucao = SolucaoController.gerarSolucao(individuo)
         return solucao
 
-    def gerarCor(todasCores):
-        cor = random.randint(1, 5)
-        print(todasCores)
-        if cor not in todasCores:
-            todasCores.append(cor)
-            currentColor = cor
-            # todasCores.append(currentColor)
-            return currentColor
-        else:
-            SolucaoController.gerarCor(todasCores)
+
+    def gerarValorNaoRepetido(lista : list):
+        valor = random.randint(1, 5)
+        while valor in lista and len(lista) < 5:
+            valor = random.randint(1, 5)
+        lista.append(valor)    
+        return valor
