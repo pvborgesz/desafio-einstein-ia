@@ -6,3 +6,6 @@ class Individuo:
     
     def __str__(self):
         return "Nome: " + self.nome + " Pontuacao: " + str(self.pontuacao) + " Solucoes: " + str(self.solucoes)
+
+    def addPonto(self):
+        self.pontuacao+=1
