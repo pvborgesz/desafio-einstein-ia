@@ -1,8 +1,45 @@
 from Model.Individuo import Individuo
-
+''' 
+            cor:[3,4,1,2,5],
+            nacionalidade:[4,3,1,5,2],
+            bebida:[1,5,3,2,4],
+            cigarro: [2,3,1,4,5], 
+            animal:[3,4,1,5,2]}
+'''
 class IndividuoController:
     def __init__(self):
         pass
+
+    def fit (individuo : Individuo):
+        # print(individuo.__str__())
+        cor, nacionalidade, bebida, cigarro, animal = individuo.solucoes[0], individuo.solucoes[1], individuo.solucoes[2], individuo.solucoes[3], individuo.solucoes[4]
+        # print(cor, nacionalidade, bebida, cigarro, animal)
+
+        for i in range(len(cor)):
+            if (i == 0 and cor[i] == 3) or (i == 1 and cor[i] == 4) or (i == 2 and cor[i] == 1) or (i == 3 and cor[i] == 2) or (i == 4 and cor[i] == 5):
+                individuo.pontuacao += 1
+        
+        # por enquanto só avalia as posicoes, não as proposicoes em si. 
+        for i in range(len(nacionalidade)):
+            if (i == 0 and nacionalidade[i] == 4) or (i == 1 and nacionalidade[i] == 3) or (i == 2 and nacionalidade[i] == 1) or (i == 3 and nacionalidade[i] == 5) or (i == 4 and nacionalidade[i] == 2):
+                individuo.pontuacao += 1
+                # print("o valor na posicao [0][1] era ", i, nacionalidade[i])
+        for i in range(len(bebida)):
+            if (i == 0 and bebida[i] == 1) or (i == 1 and bebida[i] == 5) or (i == 2 and bebida[i] == 3) or (i == 3 and bebida[i] == 2) or (i == 4 and bebida[i] == 4):
+                individuo.pontuacao += 1
+                # print("o valor na posicao [0][2] era ", i, bebida[i])
+        for i in range(len(cigarro)):
+            if (i == 0 and cigarro[i] == 2) or (i == 1 and cigarro[i] == 3) or (i == 2 and cigarro[i] == 1) or (i == 3 and cigarro[i] == 4) or (i == 4 and cigarro[i] == 5):
+                individuo.pontuacao += 1
+                # print("o valor na posicao [0][3] era ", i, cigarro[i])
+        for i in range(len(animal)):
+            if (i == 0 and animal[i] == 3) or (i == 1 and animal[i] == 4) or (i == 2 and animal[i] == 1) or (i == 3 and animal[i] == 5) or (i == 4 and animal[i] == 2):
+                individuo.pontuacao += 1
+                # print("o valor na posicao [0][4] era ", i, animal[i])
+
+        # print("a pontuacao do individuo é : ", individuo.pontuacao)
+        return individuo.pontuacao
+        
 
     def gerarPontuacao(individuo: Individuo):
         # print(individuo.__str__(), 'das')
