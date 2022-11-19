@@ -16,3 +16,20 @@ class Solucao:
 
     def __str__(self):
         return "Cor: " + str(self.cor) + " Nacionalidade: " + str(self.nacionalidade) + " Bebida: " + str(self.bebida) + " Cigarro: " + str(self.cigarro) + " Animal: " + str(self.animal)
+
+
+    def getCorCasa(self):
+        return self.cor
+
+    def getNacionalidade(self):
+        return self.nacionalidade
+        
+    def getBebida(self):
+        return self.bebida
+
+    def getCigarro(self):
+        return self.cigarro
+
+    def getAnimal(self):
+        return self.animal
+    
