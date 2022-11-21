@@ -24,7 +24,7 @@ class SolucaoController:
 
         # individuo.pontuacao = IndividuoController.gerarPontuacao(individuo)
         # individuo.pontuacao = IndividuoController.fitness(individuo)
-        individuo.pontuacao = IndividuoController.fit(individuo)
+        individuo.pontuacao = IndividuoController.newFitness(individuo)
         # individuo.pontuacao = Regras.fitness(individuo)
         # print(individuo.__str__())
         return individuo
@@ -36,7 +36,7 @@ class SolucaoController:
         lista.append(valor)    
         return valor
 
-    def criarGeracao(qtdIndividuos:int, geracaoAnterior):
+    def criarGeracao(qtdIndividuos:int, geracaoAnterior, maxGeracoes):
         geracao = []
         if len(geracaoAnterior) < 1 :
             for i in range(qtdIndividuos):
@@ -64,13 +64,15 @@ class SolucaoController:
             while pai == mae:
                 mae = random.randint(0, int(len(geracao) * 0.1) - 1)
             filho = SolucaoController.recombinacao(geracao[pai], geracao[mae])
-            filho.pontuacao = IndividuoController.fit(filho)
+            filho.pontuacao = IndividuoController.newFitness(filho)
             novaGeracao.append(filho)
             cont += 1
 
-        
-        while novaGeracao[0].pontuacao < 20: #quantidade de pontos necessárias para gabaritar
+        geracaoId = 1
+
+        while novaGeracao[0].pontuacao < 15: #quantidade de pontos necessárias para gabaritar
             cont += 1 
+            geracaoId += 1
             # print(len(novaGeracao), "len nova geracao 1 ")
             novaGeracao = SolucaoController.criarNovaGeracao(novaGeracao, qtdIndividuos)
             novaGeracao = SolucaoController.mutacao(novaGeracao)
@@ -79,6 +81,11 @@ class SolucaoController:
             for i in range(len(novaGeracao)-1, 0, -1):
                 print(novaGeracao[i].solucoes, novaGeracao[i].pontuacao)
             print("Geração: ", cont)
+            
+            if (geracaoId >= maxGeracoes):
+                novaGeracao.sort(key=lambda x: x.pontuacao, reverse=True)
+                print("o melhor da geração é: ", novaGeracao[0].__str__())
+                break
 
         return novaGeracao
 
@@ -104,7 +111,8 @@ class SolucaoController:
             while pai == mae:
                 mae = random.randint(0, int(len(geracaoAnterior) * 0.1) - 1)
             filho = SolucaoController.recombinacao(geracaoAnterior[pai], geracaoAnterior[mae])
-            filho.pontuacao = IndividuoController.fit(filho)
+            # filho.pontuacao = IndividuoController.fit(filho)
+            filho.pontuacao = IndividuoController.newFitness(filho)
 
             novaGeracao.append(filho)
             cont += 1
@@ -149,8 +157,8 @@ class SolucaoController:
             return geracao
         return geracao
 
-    def run(qtdIndividuos:int):
-        geracao = SolucaoController.criarGeracao(qtdIndividuos,[])
+    def run(qtdIndividuos:int, qtdGeracoes : int ):
+        geracao = SolucaoController.criarGeracao(qtdIndividuos,[], qtdGeracoes)
         # # geracao.sort(key=lambda x: x.pontuacao, reverse=True)
         # # cont = 0
         # # while geracao[0].pontuacao < 25:
