@@ -6,9 +6,12 @@ import time
 class Main:
     def __init__(self):
         inicio = time.time()
-        # SolucaoController.gerarSolucaoAleatoria();
-        # SolucaoController.criarGeracao(2000); #o argumento é a quantidade de individuos que vai ter na geracao
-        SolucaoController.run(10000, 10000); #o argumento é a quantidade de individuos que vai ter na geracao
+        
+        popInicial = 10000
+        numGeracoes = 1000
+
+        SolucaoController.run(popInicial, numGeracoes)
+        
         fim = time.time()
         print(fim - inicio, "segundos")
 

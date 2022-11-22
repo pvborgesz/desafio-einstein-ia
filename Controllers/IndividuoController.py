@@ -48,19 +48,19 @@ class IndividuoController:
         for i in range(len(individuo.solucoes[0])): # verificando cores
             if individuo.solucoes[0][0] == 3 and i == 0:
                 individuo.pontuacao += 1
-                print("o valor na posicao [0][0] era ", individuo.solucoes[0][0])
+                #print("o valor na posicao [0][0] era ", individuo.solucoes[0][0])
             elif individuo.solucoes[0][1] == 4 and i == 1:
                 individuo.pontuacao += 1
-                print("o valor na posicao [0][1] era ", individuo.solucoes[0][1])
+                #print("o valor na posicao [0][1] era ", individuo.solucoes[0][1])
             elif individuo.solucoes[0][2] == 1 and i == 2:
                 individuo.pontuacao += 1
-                print("o valor na posicao [0][2] era ", individuo.solucoes[0][2])
+                #print("o valor na posicao [0][2] era ", individuo.solucoes[0][2])
             elif individuo.solucoes[0][3] == 2 and i == 3:
                 individuo.pontuacao += 1
-                print("o valor na posicao [0][3] era ", individuo.solucoes[0][3])
+                #print("o valor na posicao [0][3] era ", individuo.solucoes[0][3])
             elif individuo.solucoes[0][4] == 5 and i == 4:
                 individuo.pontuacao += 1
-                print("o valor na posicao [0][4] era ", individuo.solucoes[0][4])
+                #print("o valor na posicao [0][4] era ", individuo.solucoes[0][4])
 
         for i in range(len(individuo.solucoes[1])): # verificando nacionalidade
             if individuo.solucoes[1] == 4 and i == 0:
@@ -112,7 +112,7 @@ class IndividuoController:
             elif individuo.solucoes[4] == 3 and i == 4:
                 individuo.pontuacao += 1
 
-        print("O individuo pontuou: ", individuo.pontuacao)
+        #print("O individuo pontuou: ", individuo.pontuacao)
 
         return individuo.pontuacao
 
@@ -237,81 +237,81 @@ class IndividuoController:
         for i in range (5):
             ## "O Norueguês vive na primeira casa."
             if nacionalidades[i] == 4 and i == 0:
-                print("O Norueguês vive na primeira casa. ")
+                #print("O Norueguês vive na primeira casa. ")
                 individuo.pontuacao += 1
             
             ## "O Inglês mora na casa vermelha."
             if nacionalidades[i] == 1 and cores[i] == 1:
-                print("O Inglês mora na casa vermelha. ")
+                #print("O Inglês mora na casa vermelha. ")
                 individuo.pontuacao += 1
             
             ## "O Sueco tem Cachorros como animais de estimação."
             if nacionalidades[i] == 2 and animais[i] == 2:
-                print("O Sueco tem Cachorros como animais de estimação. ")
+                #print("O Sueco tem Cachorros como animais de estimação. ")
                 individuo.pontuacao += 1
 
             ## "O Dinamarquês bebe chá."
             if nacionalidades[i] == 3 and bebidas[i] == 5:
-                print("O Dinamarquês bebe chá. ")
+                #print("O Dinamarquês bebe chá. ")
                 individuo.pontuacao += 1
             
             ## "A casa verde está imediatamente à esquerda da casa branca."
             if i < 4:
                 if cores[i] == 2 and cores[i+1] == 5:
-                    print("A casa verde está imediatamente à esquerda da casa branca. ")
+                    #print("A casa verde está imediatamente à esquerda da casa branca. ")
                     individuo.pontuacao += 1
             
             ## "O dono da casa verde bebe café."
             if cores[i] == 2 and bebidas[i] == 2:
-                print("O dono da casa verde bebe café. ")
+                #print("O dono da casa verde bebe café. ")
                 individuo.pontuacao += 1
 
             ## "A pessoa que fuma Pall Mall cria pássaros."
             if cigarros[i] == 1 and animais[i] == 1:
-                print("A pessoa que fuma Pall Mall cria pássaros. ")
+                #print("A pessoa que fuma Pall Mall cria pássaros. ")
                 individuo.pontuacao += 1
 
             ## "O dono da casa amarela fuma Dunhill."
             if cores[i] == 3 and cigarros[i] == 2:
-                print("O dono da casa amarela fuma Dunhill. ")
+                #print("O dono da casa amarela fuma Dunhill. ")
                 individuo.pontuacao += 1
 
             ## "O homem que vive na casa do meio bebe leite."
             if i == 2 and bebidas[i] == 3:
-                print("O homem que vive na casa do meio bebe leite. ")
+                #print("O homem que vive na casa do meio bebe leite. ")
                 individuo.pontuacao += 1
 
             ## "O alemão fuma Prince."
             if nacionalidades[i] == 5 and cigarros[i] == 4:
-                print("O alemão fuma Prince. ")
+                #print("O alemão fuma Prince. ")
                 individuo.pontuacao += 1
         
             ## "O norueguês vive ao lado da casa azul."
             if i < 4:
                 if nacionalidades[i] == 4 and cores[i+1] == 4:
-                    print("O norueguês vive ao lado da casa azul. ")
+                    #print("O norueguês vive ao lado da casa azul. ")
                     individuo.pontuacao += 1
 
             ## "O homem que fuma Blends tem um vizinho que bebe água."
             if i < 4 and i > 0:
                 if cigarros[i] == 3 and bebidas[i+1] == 1 or bebidas [i-1] == 1:
-                    print("O homem que fuma Blends tem um vizinho que bebe água. ")
+                    #print("O homem que fuma Blends tem um vizinho que bebe água. ")
                     individuo.pontuacao += 1
 
             ## "O homem que tem um gato vive ao lado da casa que fuma Dunhill."
             if i < 4 and i > 0:
                 if animais[i] == 3 and cigarros[i+1] == 2 or cigarros[i-1] == 2:
-                    print("O homem que tem um gato vive ao lado da casa que fuma Dunhill. ")
+                    #print("O homem que tem um gato vive ao lado da casa que fuma Dunhill. ")
                     individuo.pontuacao += 1
 
             ## "O homem que fuma Blue Master bebe cerveja."
             if cigarros[i] == 5 and bebidas[i] == 4:
-                print("O homem que fuma Blue Master bebe cerveja. ")
+                #print("O homem que fuma Blue Master bebe cerveja. ")
                 individuo.pontuacao += 1
 
             ## "O homem que vive na casa do centro bebe leite."
             if i == 2 and bebidas[i] == 3:
-                print("O homem que vive na casa do centro bebe leite. ")
+                #print("O homem que vive na casa do centro bebe leite. ")
                 individuo.pontuacao += 1
 
         print("O individuo pontuou: ", individuo.pontuacao)
