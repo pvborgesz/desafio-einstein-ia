@@ -7,8 +7,8 @@ class Main:
     def __init__(self):
         inicio = time.time()
         
-        popInicial = 10000
-        numGeracoes = 1000
+        popInicial = 1000000
+        numGeracoes = 10
 
         SolucaoController.run(popInicial, numGeracoes)
         

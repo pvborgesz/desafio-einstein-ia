@@ -51,18 +51,18 @@ class SolucaoController:
 
         novaGeracao = []
 
-        for i in range(int(len(geracao) * 0.4)): # sobrevivencia dos 20% melhores pontuados
+        for i in range(int(len(geracao) * 0.3)): # sobrevivencia dos 20% melhores pontuados
             novaGeracao.append(geracao[i])
         
         # novaGeracao = SolucaoController.mutacao(novaGeracao)
         novaGeracao.sort(key=lambda x: x.pontuacao, reverse=True)
         cont = 0
 
-        for i in range(int(len(geracao)* 0.1), 0, -1): # sobrevivencia dos 10% piores pontuados
-            novaGeracao.append(geracao[i])
+        # for i in range(int(len(geracao)* 0.1), 0, -1): # sobrevivencia dos 10% piores pontuados
+        #     novaGeracao.append(geracao[i])
 
 
-        for i in range(int(len(geracao)* 0.6)):
+        for i in range(int(len(geracao)* 0.7)):
             pai = random.randint(0, int(len(geracao) * 0.1) - 1)
             mae = random.randint(0, int(len(geracao) * 0.1) - 1)
             while pai == mae:
@@ -78,19 +78,25 @@ class SolucaoController:
             cont += 1 
             geracaoId += 1
             novaGeracao = SolucaoController.criarNovaGeracao(novaGeracao, qtdIndividuos)
-            novaGeracao = SolucaoController.mutacao(novaGeracao) #DESCOMENTAR PARA ATIVAR MUTACAO
+            # novaGeracao = SolucaoController.mutacao(novaGeracao) #DESCOMENTAR PARA ATIVAR MUTACAO
+            
+            # aux = novaGeracao[0].solucaoCorreta
+            # novaGeracao[0].solucoes = aux
+
             novaGeracao.sort(key=lambda x: x.pontuacao, reverse=True)
             print("o melhor da geração é: ", novaGeracao[0].__str__())
             print("Geração: ", cont)
             
+
             if (novaGeracao[0].pontuacao == 15):
                 print("Solucao Vencedora: ", novaGeracao[0].__str__())
-
-            if (geracaoId >= maxGeracoes):
-                novaGeracao.sort(key=lambda x: x.pontuacao, reverse=True)
-                print("o melhor da geração é: ", novaGeracao[0].__str__())
                 print("Geração: ", cont)
-                break
+
+            # if (geracaoId >= maxGeracoes):
+            #     novaGeracao.sort(key=lambda x: x.pontuacao, reverse=True)
+            #     print("o melhor da geração é: ", novaGeracao[0].__str__())
+            #     print("Geração: ", cont)
+            #     break
 
         return novaGeracao
 
